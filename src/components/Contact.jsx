@@ -31,6 +31,7 @@ function Contact() {
       href: 'https://t.me/Arsyx_web',
       icon: <FaTelegram />,
       external: true,
+      ltr: true,
     },
     {
       id: 'phone',
@@ -39,6 +40,7 @@ function Contact() {
       href: 'tel:+989961495625',
       icon: <FaPhone />,
       external: false,
+      ltr: true,
     },
     {
       id: 'instagram',
@@ -47,6 +49,7 @@ function Contact() {
       href: 'https://instagram.com/arsyx_web',
       icon: <FaInstagram />,
       external: true,
+      ltr: true,
     },
     {
       id: 'github',
@@ -55,6 +58,7 @@ function Contact() {
       href: 'https://github.com/sadraaaQ',
       icon: <FaGithub />,
       external: true,
+      ltr: true,
     },
     {
       id: 'response',
@@ -198,6 +202,7 @@ function Contact() {
               {item.href ? (
                 <a
                   href={item.href}
+                  dir={item.ltr ? 'ltr' : undefined}
                   {...(item.external && {
                     target: '_blank',
                     rel: 'noopener noreferrer',
@@ -206,7 +211,7 @@ function Contact() {
                   {item.value}
                 </a>
               ) : (
-                <p>{item.value}</p>
+                <p dir={item.ltr ? 'ltr' : undefined}>{item.value}</p>
               )}
 
             </div>
