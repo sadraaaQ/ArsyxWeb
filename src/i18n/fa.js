@@ -187,6 +187,8 @@
     namePlaceholder: "نام شما",
     emailLabel: "ایمیل",
     emailPlaceholder: "you@example.com",
+    phoneFieldLabel: "شماره تلفن (اختیاری)",
+    phonePlaceholder: "09123456789",
     messageLabel: "درباره پروژه",
     messagePlaceholder:
       "چه چیزی می‌خواهید بسازید؟ هرچقدر اطلاعات دارید برای ما بنویسید...",

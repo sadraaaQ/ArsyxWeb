@@ -3969,6 +3969,16 @@ background-color: #2ddf6800;
   gap: 8px;
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .form-group label {
   color: var(--color-white);
   font-size: 13px;

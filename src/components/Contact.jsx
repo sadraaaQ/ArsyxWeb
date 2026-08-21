@@ -1,92 +1,144 @@
 import { useState } from 'react';
-import { 
-  FaTelegram, 
-  FaPhone, 
-  FaInstagram, 
-  FaGithub, 
-  FaClock, 
-  FaShieldAlt 
+import {
+  FaTelegram,
+  FaPhone,
+  FaInstagram,
+  FaGithub,
+  FaClock,
+  FaShieldAlt,
 } from 'react-icons/fa';
-import { useLanguage } from '../hooks/useLanguage';
 
 function Contact() {
-  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    phone: '',
+    message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState(null);
 
   const contactItems = [
-    { 
-      id: 'telegram', 
-      label: t('contact.telegram'), 
-      value: '@Arsyx_web', 
-      href: 'https://t.me/Arsyx_web', 
-      icon: <FaTelegram />, 
+    {
+      id: 'telegram',
+      label: 'TELEGRAM',
+      value: '@Arsyx_web',
+      href: 'https://t.me/Arsyx_web',
+      icon: <FaTelegram />,
       external: true,
-      dir: 'ltr',
     },
-    { 
-      id: 'phone', 
-      label: t('contact.phone'), 
-      value: '+98 996 149 5625', 
-      href: 'tel:+989961495625', 
-      icon: <FaPhone />, 
+    {
+      id: 'phone',
+      label: 'PHONE',
+      value: '+98 996 149 5625',
+      href: 'tel:+989961495625',
+      icon: <FaPhone />,
       external: false,
-      dir: 'ltr',
     },
-    { 
-      id: 'instagram', 
-      label: t('contact.instagram'), 
-      value: '@arsyx_web', 
-      href: 'https://instagram.com/arsyx_web', 
-      icon: <FaInstagram />, 
+    {
+      id: 'instagram',
+      label: 'INSTAGRAM',
+      value: '@arsyx_web',
+      href: 'https://instagram.com/arsyx_web',
+      icon: <FaInstagram />,
       external: true,
-      dir: 'ltr',
     },
-    { 
-      id: 'github', 
-      label: t('contact.github'), 
-      value: 'github.com/sadraaaQ', 
-      href: 'https://github.com/sadraaaQ', 
-      icon: <FaGithub />, 
+    {
+      id: 'github',
+      label: 'GITHUB',
+      value: 'github.com/sadraaaQ',
+      href: 'https://github.com/sadraaaQ',
+      icon: <FaGithub />,
       external: true,
-      dir: 'ltr',
     },
-    { 
-      id: 'response', 
-      label: t('contact.responseTime'), 
-      value: t('contact.responseValue'), 
-      icon: <FaClock />, 
-      external: false 
+    {
+      id: 'response',
+      label: 'RESPONSE TIME',
+      value: 'Usually within 24–48 hours.',
+      icon: <FaClock />,
+      external: false,
     },
   ];
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-    if (formStatus) setFormStatus(null);
+    const { id, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+
+    if (formStatus) {
+      setFormStatus(null);
+    }
+  };
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value
+      .replace(/\D/g, '')
+      .slice(0, 20);
+
+    setFormData((prev) => ({
+      ...prev,
+      phone: value,
+    }));
+
+    if (formStatus) {
+      setFormStatus(null);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
     setFormStatus(null);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setFormStatus({ 
-        type: 'success', 
-        message: t('contact.successMessage')
+      const response = await fetch(
+        'http://localhost:3001/api/contact',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error(
+          data.error || 'Failed to send message'
+        );
+      }
+
+      setFormStatus({
+        type: 'success',
+        message:
+          "✨ Message sent successfully! We'll get back to you soon.",
       });
-      setFormData({ name: '', email: '', message: '' });
-    } catch {
-      setFormStatus({ 
-        type: 'error', 
-        message: t('contact.errorMessage')
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error(
+        '[contact] submit failed:',
+        error
+      );
+
+      setFormStatus({
+        type: 'error',
+        message:
+          '❌ Failed to send message. Please try again or contact us directly.',
       });
     } finally {
       setIsSubmitting(false);
@@ -94,130 +146,249 @@ function Contact() {
   };
 
   return (
-    <section className="contact-page" id="contact">
+    <section
+      className="contact-page"
+      id="contact"
+    >
       <div className="container">
+
+        {/* Header */}
         <div className="contact-header">
-          <p className="contact-section-label">{t('contact.label')}</p>
-          
-          <h1 className="contact-title">
-            {t('contact.title')} <span>{t('contact.titleHighlight')}</span>
-          </h1>
-          <p className="contact-description">
-            {t('contact.description')}
+
+          <p className="contact-section-label">
+            GET IN TOUCH
           </p>
-          <a href="tel:+989961495625" className="contact-call">
-            {t('contact.callNow')} ↗
+
+          <h1 className="contact-title">
+            Let's build <span>something.</span>
+          </h1>
+
+          <p className="contact-description">
+            Have a project in mind? Reach out to us
+            directly. We'd love to hear about your
+            idea and see how we can help bring it
+            to life.
+          </p>
+
+          <a
+            href="tel:+989961495625"
+            className="contact-call"
+          >
+            Call us right now ↗
           </a>
+
         </div>
 
+        {/* Contact Information */}
         <div className="contact-info-grid">
+
           {contactItems.map((item) => (
-            <div key={item.id} className="contact-info-item">
-              <span className="contact-icon">{item.icon}</span>
-              <span className="contact-info-label">{item.label}</span>
+            <div
+              key={item.id}
+              className="contact-info-item"
+            >
+
+              <span className="contact-icon">
+                {item.icon}
+              </span>
+
+              <span className="contact-info-label">
+                {item.label}
+              </span>
+
               {item.href ? (
                 <a
                   href={item.href}
-                  dir={item.dir}
                   {...(item.external && {
                     target: '_blank',
-                    rel: 'noopener noreferrer'
+                    rel: 'noopener noreferrer',
                   })}
                 >
                   {item.value}
                 </a>
               ) : (
-                <p dir={item.dir}>{item.value}</p>
+                <p>{item.value}</p>
               )}
+
             </div>
           ))}
+
         </div>
 
+        {/* Contact Form */}
         <div className="contact-form-wrapper">
-          <h2 className="contact-form-title">{t('contact.formTitle')}</h2>
-          
-          <form className="contact-form" onSubmit={handleSubmit} noValidate>
+
+          <h2 className="contact-form-title">
+            Send us a message
+          </h2>
+
+          <form
+            className="contact-form"
+            onSubmit={handleSubmit}
+            noValidate
+          >
+
+            {/* Name */}
             <div className="form-group">
-              <label htmlFor="name">{t('contact.nameLabel')}</label>
+
+              <label htmlFor="name">
+                Your Name
+              </label>
+
               <input
                 type="text"
                 id="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder={t('contact.namePlaceholder')}
+                minLength={2}
+                maxLength={100}
+                placeholder="John Doe"
                 disabled={isSubmitting}
+                autoComplete="name"
                 aria-required="true"
               />
+
             </div>
-            
+
+            {/* Email */}
             <div className="form-group">
-              <label htmlFor="email">{t('contact.emailLabel')}</label>
+
+              <label htmlFor="email">
+                Email Address
+              </label>
+
               <input
                 type="email"
                 id="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder={t('contact.emailPlaceholder')}
+                maxLength={254}
+                placeholder="john@example.com"
                 disabled={isSubmitting}
+                autoComplete="email"
                 aria-required="true"
               />
+
             </div>
-            
+
+            {/* Phone */}
             <div className="form-group">
-              <label htmlFor="message">{t('contact.messageLabel')}</label>
+
+              <label htmlFor="phone">
+                Phone Number
+              </label>
+
+              <input
+                type="tel"
+                id="phone"
+                value={formData.phone}
+                onChange={handlePhoneChange}
+                required
+                inputMode="numeric"
+                pattern="[0-9]{5,20}"
+                minLength={5}
+                maxLength={20}
+                placeholder="09123456789"
+                disabled={isSubmitting}
+                autoComplete="tel"
+                aria-required="true"
+              />
+
+            </div>
+
+            {/* Message */}
+            <div className="form-group">
+
+              <label htmlFor="message">
+                Your Message
+              </label>
+
               <textarea
                 id="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
-                placeholder={t('contact.messagePlaceholder')}
+                minLength={10}
+                maxLength={5000}
+                placeholder="Tell us about your project..."
                 disabled={isSubmitting}
                 aria-required="true"
               />
+
             </div>
-            
+
+            {/* Status */}
             {formStatus && (
-              <div className={`form-status ${formStatus.type}`} role="alert">
+              <div
+                className={`form-status ${formStatus.type}`}
+                role="alert"
+                aria-live="polite"
+              >
                 {formStatus.message}
               </div>
             )}
-            
+
+            {/* Submit */}
             <button
               type="submit"
               className="contact-submit"
               disabled={isSubmitting}
             >
-              {isSubmitting ? t('contact.sending') : t('contact.submit')}
+              {isSubmitting
+                ? 'Sending...'
+                : 'Send Message'}
             </button>
+
           </form>
-          
+
+          {/* Security */}
           <div className="contact-security">
             <FaShieldAlt />
-            {t('contact.security')}
+
+            <span>
+              Your data is safe and secure
+            </span>
           </div>
+
         </div>
 
+        {/* Quick CTA */}
         <div className="contact-quick">
+
           <div className="contact-quick-content">
-            <span className="contact-quick-icon">💬</span>
+
+            <span className="contact-quick-icon">
+              💬
+            </span>
+
             <div>
-              <h3 className="contact-quick-title">{t('contact.quickTitle')}</h3>
+
+              <h3 className="contact-quick-title">
+                Prefer instant messaging?
+              </h3>
+
               <p className="contact-quick-text">
-                {t('contact.quickText')}
+                Connect with us on Telegram for
+                quick responses.
               </p>
+
             </div>
+
           </div>
+
           <a
             href="https://t.me/Arsyx_web"
             target="_blank"
             rel="noopener noreferrer"
             className="contact-quick-button"
           >
-            {t('contact.quickButton')} →
+            Chat on Telegram →
           </a>
+
         </div>
+
       </div>
     </section>
   );

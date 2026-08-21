@@ -188,6 +188,8 @@ const en = {
     namePlaceholder: "John Doe",
     emailLabel: "Email Address",
     emailPlaceholder: "john@example.com",
+    phoneFieldLabel: "Phone Number (optional)",
+    phonePlaceholder: "09123456789",
     messageLabel: "Your Message",
     messagePlaceholder: "Tell us about your project...",
     sending: "Sending...",
