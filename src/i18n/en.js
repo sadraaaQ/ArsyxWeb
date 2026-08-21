@@ -71,6 +71,8 @@ const en = {
     description:
       "A selection of digital products, applications and experiences created by Arsyx Web.",
     empty: "No projects available",
+    viewAll: "View All Projects",
+    pageTitle: "All",
     visitWebsite: "Visit Website",
     pythonProject: "Python Project",
     statusLive: "LIVE",

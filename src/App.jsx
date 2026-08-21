@@ -12,6 +12,7 @@ import Team from "./components/Team";
 import WhyArsyx from "./components/WhyArsyx";
 
 import ContactPage from "./pages/ContactPage";
+import ProjectsPage from "./pages/ProjectsPage";
 import { useLanguage } from "./hooks/useLanguage";
 
 import "./App.css";
@@ -47,8 +48,9 @@ function HomePage() {
 
       <main>
         <Hero />
-        <Team />
+        
         <Services />
+        <Team />
         <Projects />
         <Process />
         <WhyArsyx />
@@ -122,6 +124,17 @@ function App() {
             <>
               <Navbar />
               <ContactPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/projects"
+          element={
+            <>
+              <Navbar />
+              <ProjectsPage />
+              <Footer />
             </>
           }
         />
