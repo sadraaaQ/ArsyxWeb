@@ -7,13 +7,17 @@ import {
   FaClock,
   FaShieldAlt,
 } from 'react-icons/fa';
+import { useLanguage } from '../hooks/useLanguage';
 
 function Contact() {
+  const { t } = useLanguage();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
+    company_website: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,7 +26,7 @@ function Contact() {
   const contactItems = [
     {
       id: 'telegram',
-      label: 'TELEGRAM',
+      label: t('contact.telegram'),
       value: '@Arsyx_web',
       href: 'https://t.me/Arsyx_web',
       icon: <FaTelegram />,
@@ -30,7 +34,7 @@ function Contact() {
     },
     {
       id: 'phone',
-      label: 'PHONE',
+      label: t('contact.phone'),
       value: '+98 996 149 5625',
       href: 'tel:+989961495625',
       icon: <FaPhone />,
@@ -38,7 +42,7 @@ function Contact() {
     },
     {
       id: 'instagram',
-      label: 'INSTAGRAM',
+      label: t('contact.instagram'),
       value: '@arsyx_web',
       href: 'https://instagram.com/arsyx_web',
       icon: <FaInstagram />,
@@ -46,7 +50,7 @@ function Contact() {
     },
     {
       id: 'github',
-      label: 'GITHUB',
+      label: t('contact.github'),
       value: 'github.com/sadraaaQ',
       href: 'https://github.com/sadraaaQ',
       icon: <FaGithub />,
@@ -54,8 +58,8 @@ function Contact() {
     },
     {
       id: 'response',
-      label: 'RESPONSE TIME',
-      value: 'Usually within 24–48 hours.',
+      label: t('contact.responseTime'),
+      value: t('contact.responseValue'),
       icon: <FaClock />,
       external: false,
     },
@@ -119,8 +123,7 @@ function Contact() {
 
       setFormStatus({
         type: 'success',
-        message:
-          "✨ Message sent successfully! We'll get back to you soon.",
+        message: t('contact.successMessage'),
       });
 
       setFormData({
@@ -128,6 +131,7 @@ function Contact() {
         email: '',
         phone: '',
         message: '',
+        company_website: '',
       });
     } catch (error) {
       console.error(
@@ -137,8 +141,7 @@ function Contact() {
 
       setFormStatus({
         type: 'error',
-        message:
-          '❌ Failed to send message. Please try again or contact us directly.',
+        message: t('contact.errorMessage'),
       });
     } finally {
       setIsSubmitting(false);
@@ -152,34 +155,30 @@ function Contact() {
     >
       <div className="container">
 
-        {/* Header */}
         <div className="contact-header">
 
           <p className="contact-section-label">
-            GET IN TOUCH
+            {t('contact.label')}
           </p>
 
           <h1 className="contact-title">
-            Let's build <span>something.</span>
+            {t('contact.title')}{' '}
+            <span>{t('contact.titleHighlight')}</span>
           </h1>
 
           <p className="contact-description">
-            Have a project in mind? Reach out to us
-            directly. We'd love to hear about your
-            idea and see how we can help bring it
-            to life.
+            {t('contact.description')}
           </p>
 
           <a
             href="tel:+989961495625"
             className="contact-call"
           >
-            Call us right now ↗
+            {t('contact.callNow')} ↗
           </a>
 
         </div>
 
-        {/* Contact Information */}
         <div className="contact-info-grid">
 
           {contactItems.map((item) => (
@@ -215,11 +214,10 @@ function Contact() {
 
         </div>
 
-        {/* Contact Form */}
         <div className="contact-form-wrapper">
 
           <h2 className="contact-form-title">
-            Send us a message
+            {t('contact.formTitle')}
           </h2>
 
           <form
@@ -228,11 +226,23 @@ function Contact() {
             noValidate
           >
 
-            {/* Name */}
+            <div className="hp-field" aria-hidden="true">
+              <label htmlFor="company_website">Website</label>
+              <input
+                type="text"
+                id="company_website"
+                name="company_website"
+                value={formData.company_website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div className="form-group">
 
               <label htmlFor="name">
-                Your Name
+                {t('contact.nameLabel')}
               </label>
 
               <input
@@ -243,7 +253,7 @@ function Contact() {
                 required
                 minLength={2}
                 maxLength={100}
-                placeholder="John Doe"
+                placeholder={t('contact.namePlaceholder')}
                 disabled={isSubmitting}
                 autoComplete="name"
                 aria-required="true"
@@ -251,11 +261,10 @@ function Contact() {
 
             </div>
 
-            {/* Email */}
             <div className="form-group">
 
               <label htmlFor="email">
-                Email Address
+                {t('contact.emailLabel')}
               </label>
 
               <input
@@ -265,7 +274,7 @@ function Contact() {
                 onChange={handleChange}
                 required
                 maxLength={254}
-                placeholder="john@example.com"
+                placeholder={t('contact.emailPlaceholder')}
                 disabled={isSubmitting}
                 autoComplete="email"
                 aria-required="true"
@@ -273,11 +282,10 @@ function Contact() {
 
             </div>
 
-            {/* Phone */}
             <div className="form-group">
 
               <label htmlFor="phone">
-                Phone Number
+                {t('contact.phoneFieldLabel')}
               </label>
 
               <input
@@ -285,24 +293,21 @@ function Contact() {
                 id="phone"
                 value={formData.phone}
                 onChange={handlePhoneChange}
-                required
                 inputMode="numeric"
                 pattern="[0-9]{5,20}"
                 minLength={5}
                 maxLength={20}
-                placeholder="09123456789"
+                placeholder={t('contact.phonePlaceholder')}
                 disabled={isSubmitting}
                 autoComplete="tel"
-                aria-required="true"
               />
 
             </div>
 
-            {/* Message */}
             <div className="form-group">
 
               <label htmlFor="message">
-                Your Message
+                {t('contact.messageLabel')}
               </label>
 
               <textarea
@@ -312,14 +317,13 @@ function Contact() {
                 required
                 minLength={10}
                 maxLength={5000}
-                placeholder="Tell us about your project..."
+                placeholder={t('contact.messagePlaceholder')}
                 disabled={isSubmitting}
                 aria-required="true"
               />
 
             </div>
 
-            {/* Status */}
             {formStatus && (
               <div
                 className={`form-status ${formStatus.type}`}
@@ -330,31 +334,28 @@ function Contact() {
               </div>
             )}
 
-            {/* Submit */}
             <button
               type="submit"
               className="contact-submit"
               disabled={isSubmitting}
             >
               {isSubmitting
-                ? 'Sending...'
-                : 'Send Message'}
+                ? t('contact.sending')
+                : t('contact.submit')}
             </button>
 
           </form>
 
-          {/* Security */}
           <div className="contact-security">
             <FaShieldAlt />
 
             <span>
-              Your data is safe and secure
+              {t('contact.security')}
             </span>
           </div>
 
         </div>
 
-        {/* Quick CTA */}
         <div className="contact-quick">
 
           <div className="contact-quick-content">
@@ -366,12 +367,11 @@ function Contact() {
             <div>
 
               <h3 className="contact-quick-title">
-                Prefer instant messaging?
+                {t('contact.quickTitle')}
               </h3>
 
               <p className="contact-quick-text">
-                Connect with us on Telegram for
-                quick responses.
+                {t('contact.quickText')}
               </p>
 
             </div>
@@ -384,7 +384,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="contact-quick-button"
           >
-            Chat on Telegram →
+            {t('contact.quickButton')} →
           </a>
 
         </div>
