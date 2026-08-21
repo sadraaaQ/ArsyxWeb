@@ -1,9 +1,11 @@
 import { useLanguage } from "../hooks/useLanguage";
+import { usePageTitle } from "../hooks/usePageTitle";
 import { projects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
 
 function ProjectsPage() {
   const { t } = useLanguage();
+  usePageTitle("Projects | Arsyx Web");
 
   return (
     <main>

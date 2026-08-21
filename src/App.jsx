@@ -14,6 +14,7 @@ import WhyArsyx from "./components/WhyArsyx";
 import ContactPage from "./pages/ContactPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import { useLanguage } from "./hooks/useLanguage";
+import { usePageTitle } from "./hooks/usePageTitle";
 
 import "./App.css";
 function ScrollToHash() {
@@ -42,6 +43,8 @@ function ScrollToHash() {
 }
 
 function HomePage() {
+  usePageTitle("Arsyx Web | طراحی و توسعه وبسایت");
+
   return (
     <>
       <Navbar />
