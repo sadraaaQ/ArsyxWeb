@@ -2,14 +2,38 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import nodemailer from "nodemailer";
 
 const PORT = process.env.PORT || 3001;
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
+const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_PORT = Number(process.env.SMTP_PORT) || 587;
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+const CONTACT_FROM = process.env.CONTACT_FROM || SMTP_USER;
+const CONTACT_TO = process.env.CONTACT_TO || SMTP_USER;
+
 if (!BOT_TOKEN || !CHAT_ID) {
   console.warn(
-    "[warn] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID missing — /api/contact will fail until they are set."
+    "[warn] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID missing — Telegram delivery disabled."
+  );
+}
+
+const mailer =
+  SMTP_HOST && SMTP_USER && SMTP_PASS
+    ? nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: SMTP_PORT,
+        secure: SMTP_PORT === 465,
+        auth: { user: SMTP_USER, pass: SMTP_PASS },
+      })
+    : null;
+
+if (!mailer) {
+  console.warn(
+    "[warn] SMTP_HOST / SMTP_USER / SMTP_PASS missing — email delivery disabled."
   );
 }
 
@@ -83,6 +107,44 @@ async function sendToTelegram({ name, email, phone, message }) {
   }
 }
 
+function buildContactEmailHtml({ name, email, phone, message }) {
+  const rows = [
+    ["Name", escapeHtml(name)],
+    ["Email", escapeHtml(email)],
+    ...(phone ? [["Phone", escapeHtml(phone)]] : []),
+  ]
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:4px 12px 4px 0;"><b>${label}:</b></td><td>${value}</td></tr>`
+    )
+    .join("");
+
+  return [
+    '<h2 style="margin:0 0 16px;">📩 New message — arsyxweb.ir</h2>',
+    `<table style="border-collapse:collapse;">${rows}</table>`,
+    `<p style="margin-top:16px;">${escapeHtml(message).replaceAll("\n", "<br>")}</p>`,
+  ].join("\n");
+}
+
+async function sendToEmail(fields) {
+  await mailer.sendMail({
+    from: `"Arsyx Website" <${CONTACT_FROM}>`,
+    to: CONTACT_TO,
+    replyTo: fields.email,
+    subject: `New contact message from ${fields.name}`,
+    text: [
+      "New message — arsyxweb.ir",
+      "",
+      `Name: ${fields.name}`,
+      `Email: ${fields.email}`,
+      ...(fields.phone ? [`Phone: ${fields.phone}`] : []),
+      "",
+      fields.message,
+    ].join("\n"),
+    html: buildContactEmailHtml(fields),
+  });
+}
+
 app.post("/api/contact", contactLimiter, async (req, res) => {
   const honeypot = typeof req.body.company_website === "string" ? req.body.company_website : "";
 
@@ -96,13 +158,35 @@ app.post("/api/contact", contactLimiter, async (req, res) => {
     return res.status(400).json({ ok: false, error: "validation" });
   }
 
-  try {
-    await sendToTelegram(fields);
-    res.json({ ok: true });
-  } catch (error) {
-    console.error("[contact] failed to deliver:", error.message);
-    res.status(502).json({ ok: false, error: "delivery" });
+  const channels = [];
+  if (mailer) channels.push(["email", () => sendToEmail(fields)]);
+  if (BOT_TOKEN && CHAT_ID) channels.push(["telegram", () => sendToTelegram(fields)]);
+
+  if (channels.length === 0) {
+    console.error("[contact] no delivery channel configured");
+    return res.status(502).json({ ok: false, error: "delivery" });
   }
+
+  const results = await Promise.allSettled(channels.map(([, send]) => send()));
+
+  let delivered = 0;
+  channels.forEach(([name], i) => {
+    const result = results[i];
+    if (result.status === "fulfilled") {
+      delivered++;
+    } else {
+      console.error(
+        `[contact] ${name} delivery failed:`,
+        result.reason?.message || result.reason
+      );
+    }
+  });
+
+  if (delivered === 0) {
+    return res.status(502).json({ ok: false, error: "delivery" });
+  }
+
+  res.json({ ok: true });
 });
 
 app.listen(PORT, () => {
