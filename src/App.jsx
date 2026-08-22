@@ -51,12 +51,11 @@ function HomePage() {
 
       <main>
         <Hero />
-        
-        <Services />
+        <WhyArsyx /> 
         <Team />
         <Projects />
         <Process />
-        <WhyArsyx />
+        <Services />
         
       </main>
 
