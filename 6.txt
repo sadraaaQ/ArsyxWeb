@@ -1,0 +1,1192 @@
+ARSYX WEB — UI/UX 
+AUDIT
+ & CONVERSION IMPROVEMENT
+ REPOR
+T
+W
+ebsite: 
+arsyxweb.netlify
+.app
+Audit Scope: UI, UX, V
+isual Design, 
+Accessibility
+, Responsiveness, Conversion Clarity
+Overall UI Score: 
+50/100
+Overall UX Score: 
+62/100
+---
+1. Executive Summary
+Arsyx W
+eb has a recognizable visual identity and a modern digital-agency aesthetic, but
+ 
+the current interface has several usability and conversion problems that prevent the
+ 
+website from communicating its value as ef
+ficiently as it could.
+The primary issue is not the overall visual concept. 
+The bigger problem is that the
+ 
+interface currently requires too much attention from the visitor
+.
+The audit results consistently point to five connected problems:
+1. 
+T
+ypography and readability
+2. W
+eak visual hierarchy
+3. Mobile interaction friction
+4. Insuf
+ficient accessibility and contrast
+5. Unclear conversion path and insuf
+ficient proof
+The website should not be completely redesigned from scratch. 
+The highest-impact
+ 
+strategy is to keep the existing 
+Arsyx identity while restructuring the interface around
+ 
+clarity
+, hierarchy
+, usability
+, trust, and conversion.
+---
+2. Current Performance Overview
+Area Result Risk
+UI 
+50/100
+ Needs improvement
+UX 
+62/100
+ Needs improvement
+T
+ypography 
+39/100
+ Critical
+V
+isual Hierarchy Fair Conversion risk
+Color Contrast Fair Conversion risk
+Consistency Fair 
+T
+rust risk
+Responsiveness Fair / High Impact Mobile conversion risk
+T
+ask Clarity Fair Conversion risk
+Navigation Depth Fair UX friction
+Friction Points High Risk Mobile abandonment
+Accessibility Critical Engagement risk
+Conversion Clarity Fair Revenue/conversion risk
+---
+3. 
+T
+ypography — Highest Priority
+Problem
+T
+ypography received the lowest score: 
+39/100
+.
+Some smaller text is dif
+ficult to read against the dark background. 
+This increases
+ 
+cognitive load and makes supporting information easier to miss.
+The problem is not necessarily the font itself. 
+The bigger issue is the relationship
+ 
+between:
+Font size
+Font weight
+Line height
+T
+ext color
+Background contrast
+Heading hierarchy
+Spacing
+The current typography does not always create a suf
+ficiently clear distinction between
+ 
+primary and secondary information.
+Recommended Solution
+Create a strict typography hierarchy:
+Display → H1 → H2 → H3 → Body → Caption
+Primary content should have strong contrast.
+Secondary content should remain visibly readable rather than fading into the
+ 
+background.
+Recommended starting point:
+body {
+ 
+ 
+ 
+ font-size: 16px;
+ 
+ 
+ 
+ line-height: 1.6;
+}
+h1 {
+ 
+ 
+ 
+ line-height: 1.15;
+}
+p {
+ 
+ 
+ 
+ line-height: 1.7;
+}
+For mobile, the audit recommendation of approximately:
+h1 {
+ 
+ 
+ 
+ font-size: 42px;
+ 
+ 
+ 
+ line-height: 1.15;
+}
+body {
+ 
+ 
+ 
+ font-size: 15px;
+ 
+ 
+ 
+ line-height: 1.7;
+}
+can be used as a starting point, but the final values should be adjusted according to the
+ 
+actual font and language.
+---
+4. V
+isual Hierarchy
+Problem
+The first screen reportedly distributes attention between:
+Logo
+Headline
+Glow ef
+fects
+Multiple buttons
+Decorative elements
+This creates visual competition.
+Instead of immediately understanding the page, visitors have to decide what they should
+ 
+look at first.
+That creates hesitation.
+Recommended Solution
+The Hero should follow a clear hierarchy:
+1. Message
+2. Explanation
+3. Primary action
+4. Secondary action
+5. Decorative visual
+The glow and other visual ef
+fects should support the composition rather than compete
+ 
+with the headline and CT
+A.
+Recommended Hero Structure
+Small Badge
+H1
+Clear value proposition
+Short supporting paragraph
+[ Start a Project ]
+[ V
+iew Projects ]
+V
+isual / Glow
+The visitor should understand what 
+Arsyx does within a few seconds.
+---
+5. 
+T
+ask Clarity
+Problem
+V
+isitors can understand that 
+Arsyx builds websites, but the next action is not always
+ 
+immediately obvious.
+The website answers:
+> "What do these people do?"
+but does not always answer immediately:
+> "What should I do next?"
+This is a major UX problem for a commercial portfolio.
+Recommended Solution
+Every major section should have a clear purpose.
+The visitor journey should be:
+Understand 
+Arsyx
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+See the work
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+Understand the services
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+Build trust
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+Start a project
+CT
+A
+ labels should also be explicit.
+Prefer:
+V
+iew Projects
+Start a Project
+Contact Us
+over vague labels such as:
+Learn More
+Explore
+Click Here
+---
+6. Conversion Clarity
+Problem
+The of
+fer is visible, but the website does not reinforce it strongly enough with proof and a
+ 
+clear next step.
+For a web development studio, simply saying:
+> "W
+e build websites."
+is not enough.
+V
+isitors need evidence.
+Recommended Solution
+Use this structure:
+Claim → Proof → Reason → CT
+A
+For example:
+Claim
+W
+e design and build modern digital experiences.
+Proof
+Selected projects / demos.
+Reason
+Why choose 
+Arsyx?
+Custom development
+Modern design
+Responsive experiences
+Clear communication
+Relevant technologies
+CT
+A
+Start a Project
+This creates a much stronger conversion path.
+---
+7. Projects & Social Proof
+Problem
+Projects should play a much larger role in establishing trust.
+A
+ potential client wants to know:
+> "Can these people actually build something good?"
+The portfolio is the answer
+.
+Recommended Solution
+Create a strong Selected Projects section.
+Each project should contain:
+Project preview
+Project name
+Project category
+T
+echnologies used
+Short description
+V
+iew Project button
+For concept projects and DEMOs, clearly identify them as concepts/demos.
+This is especially important because the DEMO system can become one of 
+Arsyx's
+ 
+strongest assets.
+A
+ visitor could see:
+DEMO 01
+Cof
+fee Shop Landing Page
+DEMO 02
+Luxury Perfume Store
+DEMO 03
+Creative 
+Agency
+DEMO 04
+SaaS Dashboard
+This provides tangible proof of design and development capability
+.
+---
+8. Mobile Responsiveness — High Priority
+Problem
+The website works on mobile, but the mobile layout becomes tighter and harder to scan.
+The audit specifically identifies:
+Small cards
+Dense controls
+Limited breathing room
+Small interaction targets
+Compressed secondary content
+These issues increase mobile friction.
+Recommended Solution
+Mobile should not simply be a smaller version of desktop.
+It should have its own layout strategy
+.
+Recommended baseline
+.mobile-section {
+ 
+ 
+ 
+ padding-inline: 20px;
+}
+.mobile-hero {
+ 
+ 
+ 
+ gap: 16px;
+}
+button,
+a.button
+ {
+ 
+ 
+ 
+ min-height: 44px;
+}
+The audit recommends approximately:
+44×44px minimum touch target
+for:
+Menu controls
+Buttons
+Arrows
+Pills
+Interactive cards
+Other touch elements
+---
+9. Mobile Hero
+Problem
+The mobile first screen currently gives too much competition to secondary elements.
+The visitor should not have to navigate through multiple visual elements before reaching
+ 
+the primary action.
+Recommended Solution
+The mobile Hero should prioritize:
+H1
+↓
+Short description
+↓
+Primary CT
+A
+↓
+Secondary CT
+A
+↓
+V
+isual
+The primary CT
+A
+ should have approximately:
+48px height
+with approximately:
+20px horizontal padding
+The secondary pill/action should be separated from the primary CT
+A
+ by approximately:
+12px
+and should use content-fit width rather than unnecessarily occupying space.
+---
+10. Mobile Card & Control Friction
+Problem
+Several mobile cards and controls reportedly feel too small and dense.
+This creates precision requirements.
+The user has to concentrate more to:
+T
+ap a button
+Open a card
+Use an arrow
+Understand small text
+Navigate between controls
+This is unnecessary friction.
+Recommended Solution
+Increase:
+T
+ouch target size
+Internal card padding
+Spacing between controls
+T
+ext readability
+V
+isual separation
+Use approximately:
+.card {
+ 
+ 
+ 
+ border-radius: 12px;
+}
+button {
+ 
+ 
+ 
+ min-height: 44px;
+}
+Do not solve mobile density by simply reducing font size.
+---
+1
+1. Color Contrast
+Problem
+Some gray text fades into the dark background.
+This creates three problems:
+1. Reduced readability
+2. Reduced accessibility
+3. Reduced perceived professionalism
+If supporting information is dif
+ficult to read, the interface can feel less trustworthy
+.
+Recommended Solution
+Use a stronger contrast system.
+Example:
+--text-primary: #F4F4F5;
+--text-secondary: #A1A1AA;
+A
+void extremely dark gray text on black or navy backgrounds.
+Contrast should also be checked using WCAG contrast standards rather than relying
+ 
+exclusively on visual judgment.
+---
+12. 
+Accessibility
+Problem
+Accessibility was classified as a Critical Risk.
+Some text and controls are dif
+ficult to notice or read.
+This af
+fects more than users with disabilities.
+Poor accessibility generally means the interface requires more ef
+fort from everyone.
+Recommended Solution
+Implement:
+Strong text contrast
+Clear focus states
+Adequate touch targets
+Semantic HTML
+Keyboard accessibility
+Clearly identifiable buttons
+Accessible form labels
+Meaningful link text
+Suf
+ficient spacing between interactive elements
+Do not rely on color alone to communicate state or meaning.
+---
+13. Consistency
+Problem
+Buttons, cards, and smaller controls do not always feel like they belong to the same
+ 
+design system.
+This weakens visual polish and can af
+fect perceived professionalism.
+Recommended Solution
+Create a reusable design system.
+Buttons
+Primary
+Secondary
+Ghost
+Cards
+Project Card
+Service Card
+T
+eam Card
+T
+ypography
+Display
+Heading
+Body
+Caption
+Shared properties
+Define consistent:
+Border radius
+Padding
+Font weights
+Font sizes
+Shadows
+Borders
+Hover states
+Active states
+T
+ransitions
+This will make the site feel intentionally designed rather than individually styled.
+---
+14. Navigation
+Problem
+The navigation itself is relatively simple, but on mobile it does not strongly prioritize the
+ 
+most important actions.
+The solution is not to add more menu items.
+More navigation options would likely make the problem worse.
+Recommended Solution
+Keep the navigation focused on high-value destinations.
+For example:
+Projects
+Services
+T
+eam
+Contact
+On mobile, include the primary conversion action prominently:
+Start a Project
+The navigation should help the user reach the important information with minimal
+ 
+interaction.
+---
+15. Conversion Funnel
+The website should intentionally guide users through a funnel.
+Current problem
+The page can feel like a collection of sections rather than a continuous journey
+.
+Recommended funnel
+HERO
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ What is 
+Arsyx?
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ PROJECTS
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ "Can they actually do it?"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ SER
+VICES
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ "Are they right for me?"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ WHY
+ 
+ARSYX?
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ BUILD 
+TRUST
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ↓
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ST
+AR
+T
+ 
+A
+ PROJECT
+This is much stronger than simply placing sections one after another
+.
+---
+16. Recommended Content Strategy
+The content should become more concrete and less generic.
+Instead of excessive marketing language, focus on:
+What you build
+W
+ebsites, landing pages, e-commerce experiences, digital products, etc.
+What you actually do
+Design, frontend development, backend development, W
+ordPress development, custom
+ 
+solutions, etc.
+What you have built
+Projects and DEMOs.
+Why someone should choose you
+Specific strengths and capabilities.
+What happens next
+A
+ clear project-start process.
+---
+17. Recommended CT
+A
+ Strategy
+There should be one dominant conversion action across the website.
+Primary CT
+A
+Start a Project
+Secondary CT
+A
+V
+iew Projects
+These should appear consistently throughout the experience.
+For example:
+Hero
+ 
+ 
+ 
+ ↓
+Start a Project
+Projects
+ 
+ 
+ 
+ ↓
+V
+iew Project
+Services
+ 
+ 
+ 
+ ↓
+Start a Project
+Final CT
+A
+ 
+ 
+ 
+ ↓
+Start a Project
+This creates repetition without creating confusion.
+---
+18. Design Priority Matrix
+Priority Problem Impact Recommended 
+Action
+P0 
+T
+ypography V
+ery High Rebuild type hierarchy
+P0 
+Accessibility V
+ery High Improve contrast and readability
+P0 Mobile responsiveness High Simplify mobile layouts
+P0 Mobile interaction friction High Increase touch targets
+P1 Hero hierarchy High Reduce visual competition
+P1 Conversion clarity High Strengthen CT
+A
+ path
+P1 Project proof High Improve portfolio presentation
+P1 Contrast High Increase secondary text readability
+P2 Consistency Medium Establish component system
+P2 Navigation Medium Improve mobile prioritization
+P3 Decorative polish Low Refine animations/glow after UX fixes
+---
+19. Recommended Implementation Order
+Phase 1 — Foundation
+Fix:
+T
+ypography
+Contrast
+Accessibility
+Spacing
+Design tokens
+Do this first because these problems af
+fect the entire website.
+---
+Phase 2 — Mobile
+Rework:
+Mobile Hero
+Mobile cards
+T
+ouch targets
+Section spacing
+Navigation
+CT
+A
+ placement
+Do not simply scale down desktop components.
+---
+Phase 3 — Hero
+Simplify the first screen.
+The visitor should immediately understand:
+What 
+Arsyx is → What 
+Arsyx does → What to do next
+---
+Phase 4 — Projects
+Make projects one of the strongest sections of the site.
+Use actual work and clearly labeled DEMOs.
+---
+Phase 5 — Conversion
+Introduce a consistent conversion system:
+V
+iew Projects → Build 
+T
+rust → Start a Project
+---
+Phase 6 — V
+isual Polish
+Only after usability problems have been solved should you spend significant time on:
+Glow ef
+fects
+Animations
+Hover ef
+fects
+Decorative elements
+Micro-interactions
+These elements should enhance the experience, not compensate for unclear UX.
+---
+20. 
+T
+echnical CSS Baseline
+A
+ reasonable starting point for the mobile experience would be:
+@media (max-width: 768px) {
+ 
+ 
+ 
+ section {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ padding-inline: 20px;
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ .hero {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ gap: 16px;
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ .hero h1 {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ font-size: 42px;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ line-height: 1.15;
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ .hero p {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ font-size: 15px;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ line-height: 1.7;
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ button,
+ 
+ 
+ 
+ .button,
+ 
+ 
+ 
+ 
+a.button
+ {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ min-height: 44px;
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ .primary-button {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ min-height: 48px;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ padding-inline: 20px;
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ .card {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ border-radius: 12px;
+ 
+ 
+ 
+ }
+}
+These values should be treated as baseline recommendations, not immutable rules.
+ 
+Actual typography and spacing should be validated against the site's real content and
+ 
+font.
+---
+21. What Should NOT
+ Be Changed First
+The audit does not justify immediately rebuilding the entire visual identity
+.
+Do not prioritize:
+Completely changing the color palette
+Removing all glow ef
+fects
+Replacing the entire design
+Adding large amounts of animation
+Adding more navigation items
+Adding more sections just to make the site feel bigger
+The existing visual direction can remain.
+The priority is to make it clearer
+, more readable, more accessible, and more conversion-
+oriented.
+---
+22. Final 
+Assessment
+The main weakness of 
+Arsyx W
+eb is not a lack of visual ambition.
+It is clarity
+.
+The website needs to reduce the amount of cognitive work required from the visitor
+.
+The ideal experience should be:
+> Understand → 
+T
+rust → Explore → 
+Act
+A
+ visitor should be able to answer these questions almost immediately:
+What is 
+Arsyx?
+What do they build?
+Can they actually build it?
+Why should I trust them?
+What do I do next?
+If the site answers all five questions quickly
+, the current visual identity becomes much
+ 
+more commercially ef
+fective.
+---
+Final Priority
+If only five things can be fixed, fix these:
+01 — 
+T
+ypography
+Make every important piece of information readable.
+02 — Mobile UX
+Give mobile users more space, larger interaction targets, and simpler layouts.
+03 — Hero Hierarchy
+One message. One primary action. Minimal visual competition.
+04 — Proof
+Make Projects/DEMO work a central trust mechanism.
+05 — Conversion Path
+Create a consistent:
+V
+iew Projects → Build 
+T
+rust → Start a Project
+journey
+.
+---
+Conclusion
+Arsyx does not need to become more complicated. It needs to become more obvious.
+The strongest version of the website is not the one with the most ef
+fects, sections,
+ 
+animations, or information.
+It is the one where a first-time visitor can understand the value of 
+Arsyx, see evidence of
+ 
+its capabilities, and reach the next action with almost no hesitation.
