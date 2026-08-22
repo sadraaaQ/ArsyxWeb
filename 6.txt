@@ -1,12 +1,9 @@
 ARSYX WEB — UI/UX 
 AUDIT
  & CONVERSION IMPROVEMENT
- REPOR
-T
-W
-ebsite: 
-arsyxweb.netlify
-.app
+ REPORT
+Website: 
+arsyxweb.netlify.app
 Audit Scope: UI, UX, V
 isual Design, 
 Accessibility
@@ -17,8 +14,7 @@ Overall UX Score:
 62/100
 ---
 1. Executive Summary
-Arsyx W
-eb has a recognizable visual identity and a modern digital-agency aesthetic, but
+Arsyx Web has a recognizable visual identity and a modern digital-agency aesthetic, but
  
 the current interface has several usability and conversion problems that prevent the
  
@@ -30,11 +26,8 @@ The bigger problem is that the
 interface currently requires too much attention from the visitor
 .
 The audit results consistently point to five connected problems:
-1. 
-T
-ypography and readability
-2. W
-eak visual hierarchy
+1. Typography and readability
+2. Weak visual hierarchy
 3. Mobile interaction friction
 4. Insuf
 ficient accessibility and contrast

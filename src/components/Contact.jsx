@@ -17,7 +17,7 @@ function Contact() {
     email: '',
     phone: '',
     message: '',
-    company_website: '',
+  
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -135,7 +135,7 @@ function Contact() {
         email: '',
         phone: '',
         message: '',
-        company_website: '',
+    
       });
     } catch (error) {
       console.error(
@@ -231,18 +231,7 @@ function Contact() {
             noValidate
           >
 
-            <div className="hp-field" aria-hidden="true">
-              <label htmlFor="company_website">Website</label>
-              <input
-                type="text"
-                id="company_website"
-                name="company_website"
-                value={formData.company_website}
-                onChange={handleChange}
-                tabIndex={-1}
-                autoComplete="off"
-              />
-            </div>
+     
 
             <div className="form-group">
 
